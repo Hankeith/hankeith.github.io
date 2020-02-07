@@ -343,10 +343,10 @@
 <p><strong>（基础概念不再赘述，跳过对CSS的介绍）</strong></p>
 <h3 id="层叠次序"><a href="#层叠次序" class="headerlink" title="层叠次序"></a>层叠次序</h3><p><strong>当同一个 HTML 元素被不止一个样式定义时，会使用哪个样式呢？</strong></p>
 <p>一般而言，所有的样式会根据下面的规则层叠于一个新的虚拟样式表中，<strong>优先级随数字增大而增大</strong></p>
-<p>**1.浏览器缺省设置</p>
+<p>1.浏览器缺省设置</p>
 <p>2.外部样式表</p>
 <p>3.内部样式表（位于 <code>&lt;head&gt;</code>标签内部）</p>
-<p>4.内联样式（在 HTML 元素内部）**</p>
+<p>4.内联样式（在 HTML 元素内部）</p>
 <p>因此，内联样式（在 HTML 元素内部）拥有最高的优先权，这意味着它将优先于以下的样式声明：<code>&lt;head&gt;</code> 标签中的样式声明，外部样式表中的样式声明，或者浏览器中的样式声明（缺省值）。</p>
 <h3 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h3><p>CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。</p>
 <p>选择器通常是您需要改变样式的 HTML 元素。</p>
@@ -366,6 +366,110 @@
   <span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
   <span class="token punctuation">}</span></code></pre>
 <h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>一般来说，子元素将从父元素继承属性</p>
+<h3 id="派生选择器"><a href="#派生选择器" class="headerlink" title="派生选择器"></a>派生选择器</h3><p><strong>根据元素的上下文位置关系来定义样式</strong></p>
+<p>比方说，令h1中的 em为红色</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style type="text/css"
+h1 em</span><span class="token punctuation">{</span><span class="token property">color</span><span class="token punctuation">:</span>red<span class="token punctuation">;</span><span class="token punctuation">}</span>
+&lt;/style></code></pre>
+<h3 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h3><p>为标有特定id的HTML元素指定特定样式</p>
+<p><strong>id选择器以<code>#</code>定义</strong></p>
+<h5 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h5><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token id">#color1</span> </span><span class="token punctuation">{</span><span class="token property">color</span><span class="token punctuation">:</span>blue<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector"><span class="token id">#color2</span> </span><span class="token punctuation">{</span><span class="token property">color</span><span class="token punctuation">:</span>purple<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre>
+<p>于是乎下列id属性为color1的p元素显示为蓝色，id属性为color2的p元素显示为紫色</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>color1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    显示为蓝色
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>color2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    显示为紫色
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+<p><strong>id属性的值不能重复</strong><br>CSS中</p>
+<h5 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a>错误示范</h5><p><code>#red{color:red;} &lt;P id=&quot;red&quot;&gt;这段字体是红的&lt;/p&gt; &lt;p id=&quot;red&quot;&gt;这段也是红的&lt;/p&gt;</code></p>
+<p>这样是不可以的</p>
+<p>要写成类：<br><code>.red {color:red;} &lt;P class=&quot;red&quot;&gt;这段字体是红的&lt;/p&gt; &lt;p class=&quot;red&quot;&gt;这段也是红的&lt;/p&gt;</code></p>
+<blockquote>
+<p>实际应用的时候，ID一般会用来给有单独特性的标签来使用，而不会像上例这样使用，这样的情况，一般都会使用class，ID和Class的区别就在于此，设计这两个的初衷也是因为这样吧。  </p>
+</blockquote>
+<p> <a href="https://zhidao.baidu.com/question/1638188401398528300.html" target="_blank" rel="noopener">参考的百度问答链接</a></p>
+<p>但是可以像这样用</p>
+<h5 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h5><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token id">#sidebar</span> p </span><span class="token punctuation">{</span>
+    <span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+    <span class="token property">margin-top</span><span class="token punctuation">:</span> <span class="token number">0.5</span>em<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token id">#sidebar</span> h2 </span><span class="token punctuation">{</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">1</span>em<span class="token punctuation">;</span>
+    <span class="token property">font-weight</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+    <span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">1.5</span><span class="token punctuation">;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h3 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h3><p>类选择器以一个单号为标示</p>
+<p><code>.center {text-align: center}</code></p>
+<p>在该例中，所有拥有center类的HTML元素显示为居中</p>
+<pre class=" language-css"><code class="language-css">&lt;h<span class="token number">1</span> class=<span class="token string">"center"</span>>
+标题居中
+&lt;/h<span class="token number">1</span>>
+
+&lt;p class=<span class="token string">"center"</span>>
+内容居中
+&lt;/p></code></pre>
+<p>在上面的代码中，h1和p元素都都有 center 类，两者都遵守 <code>center</code>选择器中的规则。</p>
+<p><strong>注意，类名的第一个字符不能是数字</strong></p>
+<p>对比</p>
+<pre><code>.fancy td {
+    color: #f60;
+    background: #666;
+    }</code></pre><pre><code>td.fancy {
+    color: #f60;
+    background: #666;
+    }</code></pre><p>前者是类名为fancy的元素内部的表格单元会拥有这个样式，后者是表格单元中类名为fancy的会拥有这个样式</p>
+<h3 id="属性和值选择器"><a href="#属性和值选择器" class="headerlink" title="属性和值选择器"></a>属性和值选择器</h3><p>为带有 title 属性的所有元素设置样式：</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token attribute">[title]</span>
+</span><span class="token punctuation">{</span>
+<span class="token property">color</span><span class="token punctuation">:</span>red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>为 title=”welcome” 的所有元素设置样式：</p>
+<pre><code>[title=welcome]
+{
+border:5px solid blue;
+}</code></pre><p><strong><a href="https://www.w3school.com.cn/tiy/t.asp?f=csse_selector_attribute_form" target="_blank" rel="noopener">应用实例（摘自W3school）:</a></strong></p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+<span class="token selector">input<span class="token attribute">[type="text"]</span>
+</span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span><span class="token number">150</span>px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span>block<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span><span class="token number">10</span>px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span>yellow<span class="token punctuation">;</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> Verdana, Arial<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">input<span class="token attribute">[type="button"]</span>
+</span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span><span class="token number">220</span>px<span class="token punctuation">;</span>
+  <span class="token property">margin-left</span><span class="token punctuation">:</span><span class="token number">35</span>px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span>block<span class="token punctuation">;</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> Verdana, Arial<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>input<span class="token punctuation">"</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>get<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Name<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Bill<span class="token punctuation">"</span></span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Name<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Gates<span class="token punctuation">"</span></span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Example Button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<p>效果图：</p>
+<p><img src="http://m.qpic.cn/psc?/V130ndlR3xDOuE/ETWql2gUF22pNmiMBc.OAW1ZIo8DfE5EPvVCqTVhwQF.J5sQgTmoLvAYHoSjP8hdxPEw9meV6Z4QasgF5iXS.anHkBqZCJlQwHmljIG.ll8!/b&bo=PwJLAQAAAAADB1U!&rf=viewer_4" alt="效果一览"></p>
+<p><strong>备注:</strong></p>
+<p><img src="http://m.qpic.cn/psc?/V130ndlR3xDOuE/ETWql2gUF22pNmiMBc.OAVe8EIklG9i4FWsTU.DXnsIPkVH6123cPU.h3GWWJU8Gevy4mnn0gbQxT6aM94zITZUns3RZRnGROh4DyVKMBYk!/b&bo=1gNDAQAAAAADB7U!&rf=viewer_4" alt="属性和值选择器使用参考"></p>
 
             </div>
             <hr/>
