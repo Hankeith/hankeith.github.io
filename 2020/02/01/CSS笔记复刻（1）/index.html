@@ -300,12 +300,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/CSS/" target="_blank">
-                                <span class="chip bg-color">CSS</span>
-                            </a>
-                        
                             <a href="/tags/note/" target="_blank">
                                 <span class="chip bg-color">note</span>
+                            </a>
+                        
+                            <a href="/tags/CSS/" target="_blank">
+                                <span class="chip bg-color">CSS</span>
                             </a>
                         
                     </div>
@@ -470,6 +470,30 @@ border:5px solid blue;
 <p><img src="http://m.qpic.cn/psc?/V130ndlR3xDOuE/ETWql2gUF22pNmiMBc.OAW1ZIo8DfE5EPvVCqTVhwQF.J5sQgTmoLvAYHoSjP8hdxPEw9meV6Z4QasgF5iXS.anHkBqZCJlQwHmljIG.ll8!/b&bo=PwJLAQAAAAADB1U!&rf=viewer_4" alt="效果一览"></p>
 <p><strong>备注:</strong></p>
 <p><img src="http://m.qpic.cn/psc?/V130ndlR3xDOuE/ETWql2gUF22pNmiMBc.OAVe8EIklG9i4FWsTU.DXnsIPkVH6123cPU.h3GWWJU8Gevy4mnn0gbQxT6aM94zITZUns3RZRnGROh4DyVKMBYk!/b&bo=1gNDAQAAAAADB7U!&rf=viewer_4" alt="属性和值选择器使用参考"></p>
+<h2 id="创建CSS"><a href="#创建CSS" class="headerlink" title="创建CSS"></a>创建CSS</h2><h3 id="插入样式表"><a href="#插入样式表" class="headerlink" title="插入样式表"></a>插入样式表</h3><p>插入样式表的方法有三种</p>
+<h4 id="外部样式表"><a href="#外部样式表" class="headerlink" title="外部样式表"></a>外部样式表</h4><p><strong>当样式需要应用于很多页面时，外部样式表比较方便。</strong>在使用外部样式表的情况下，你可以通过改变一个文件来改变整个站点的外观。每个页面<strong>使用 <code>&lt;link&gt;</code> 标签链接到样式表,<code>&lt;link&gt;</code>标签在（文档的）头部</strong></p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mystyle.css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mystyle.css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></code></pre>
+<p>浏览器会从文件 mystyle.css 中读到样式声明，并根据它来改变文档样式。</p>
+<p>外部样式表中不含有html标签并以.css扩展名进行保存</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">h </span><span class="token punctuation">{</span><span class="token property">color</span><span class="token punctuation">:</span> sienna<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector">p </span><span class="token punctuation">{</span><span class="token property">margin-left</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector">body </span><span class="token punctuation">{</span><span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url">url("../..")</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre>
+<p><strong>注：不要在属性值与单位之间留空格，例如<em>20_px</em>，这样可能会出错</strong></p>
+<h4 id="内部样式表"><a href="#内部样式表" class="headerlink" title="内部样式表"></a>内部样式表</h4><p><strong>当单个文档需要特殊的样式时，就应该使用内部样式表。</strong>可以使用 <code>&lt;style&gt;</code>标签在文档头部定义内部样式表，就像这样:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token style language-css">
+  <span class="token selector">h </span><span class="token punctuation">{</span><span class="token property">color</span><span class="token punctuation">:</span> sienna<span class="token punctuation">;</span><span class="token punctuation">}</span>
+  <span class="token selector">p </span><span class="token punctuation">{</span><span class="token property">margin-left</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span>
+  <span class="token selector">body </span><span class="token punctuation">{</span><span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url">url("../..")</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></code></pre>
+<h4 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h4><p><strong>一般用于当样式仅需要在一个元素上应用一次时。</strong>要使用内联样式，你需要在相关的标签内使用样式（style）属性。style 属性可以包含任何 CSS 属性。本例展示改变段落的上外边距和左外边距：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">margin-tio</span><span class="token punctuation">:</span><span class="token number">50</span>px<span class="token punctuation">;</span> <span class="token property">margin-left</span><span class="token punctuation">:</span> <span class="token number">20</span>px</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+This is a paragraph
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
             </div>
             <hr/>
@@ -514,29 +538,26 @@ border:5px solid blue;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/01/CSS%E7%AC%94%E8%AE%B0%E5%A4%8D%E5%88%BB%EF%BC%881%EF%BC%89/">
+                <a href="/2020/02/07/CSS%E7%AC%94%E8%AE%B0%E5%A4%8D%E5%88%BB%EF%BC%882%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="CSS笔记复刻（1）">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="CSS笔记复刻（2）">
                         
-                        <span class="card-title">CSS笔记复刻（1）</span>
+                        <span class="card-title">CSS笔记复刻（2）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">回档一些原来博客的内容 这部分的学习内容与资料都在W3school上，有任何问题都能在文中贴出的链接和图片上得到解答。
-（基础概念不再赘述，跳过对CSS的介绍）
-层叠次序当同一个 HTML 元素被不止一个样式定义时，会使用哪个样式呢？
-一般</div>
+                    <div class="summary">这里是我回档原来博客中的CSS笔记的第二部分
+</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-01
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -549,16 +570,15 @@ border:5px solid blue;
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CSS/" target="_blank">
-                        <span class="chip bg-color">CSS</span>
-                    </a>
-                    
                     <a href="/tags/note/" target="_blank">
                         <span class="chip bg-color">note</span>
+                    </a>
+                    
+                    <a href="/tags/CSS/" target="_blank">
+                        <span class="chip bg-color">CSS</span>
                     </a>
                     
                 </div>
@@ -603,12 +623,12 @@ border:5px solid blue;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/note/" target="_blank">
-                        <span class="chip bg-color">note</span>
-                    </a>
-                    
                     <a href="/tags/JavaScript/" target="_blank">
                         <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/note/" target="_blank">
+                        <span class="chip bg-color">note</span>
                     </a>
                     
                 </div>
